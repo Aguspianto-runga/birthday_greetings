@@ -9,24 +9,35 @@
     <!-- Tambahkan favicon jika ada -->
     <link rel="icon" href="PN2.png">
 
+    <!-- Tambahkan link ke Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
     <!-- CSS -->
     <style>
         body {
-            background-color: #fef3e3;
-            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2); /* Gradien latar belakang */
+            font-family: 'Roboto', sans-serif;
             height: 100vh;
             margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Hilangkan scroll */
         }
 
         section {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 100%;
-            height: 100vh;
+            width: 80%;
+            height: 80vh;
             flex-flow: column;
-            padding: 20px; /* Tambahkan padding untuk ruang di sekitar konten */
-            box-sizing: border-box; /* Pastikan padding tidak menambah lebar total */
+            padding: 20px;
+            box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
 
         .container {
@@ -34,11 +45,12 @@
         }
 
         #cakeCanvas {
-            width: 100%; /* Ubah lebar menjadi 100% */
-            max-width: 500px; /* Tetapkan lebar maksimum */
-            height: auto; /* Biarkan tinggi menyesuaikan secara otomatis */
+            width: 100%;
+            max-width: 500px;
+            height: auto;
             background: url('kue_ultah1.png') no-repeat center center;
             background-size: contain;
+            transition: background-image 0.5s ease;
         }
 
         .candle {
@@ -57,7 +69,6 @@
             width: 100vw;
             height: 100vh;
             z-index: 9999;
-            /* Pastikan ini berada di depan */
             background-color: transparent;
             background-image: url('congratulations.gif');
             background-size: cover;
@@ -69,32 +80,33 @@
         }
 
         button {
-            height: 30px;
+            height: 50px;
+            width: 150px;
             cursor: pointer;
             background-color: #fb4a05;
-            color: #eee;
-            top: 50px;
+            color: #fff;
             border-radius: 10px;
-            border: #ffffff solid 2px;
-            transition: 0.5s;
-            margin-top: 10px; /* Tambahkan margin atas untuk spasi */
+            border: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-top: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         button:hover {
             background-color: #a72d00;
+            transform: scale(1.05);
         }
 
         #giftButton {
             display: none;
-            height: 30px;
-            cursor: pointer;
+            height: 40px;
             background-color: #4caf50;
-            color: #eee;
-            top: 50px;
+            color: #fff;
             border-radius: 10px;
-            border: #ffffff solid 2px;
-            transition: 0.5s;
-            margin-top: 10px; /* Tambahkan margin atas untuk spasi */
+            border: none;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         #giftButton:hover {
@@ -103,12 +115,51 @@
 
         #giftVideo {
             display: none;
-            width: 100vw; /* Ubah lebar menjadi 100vw */
-            height: 100vh; /* Ubah tinggi menjadi 100vh */
-            position: fixed; /* Tetapkan posisi tetap */
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
             top: 0;
             left: 0;
-            z-index: 10000; /* Pastikan ini berada di depan */
+            z-index: 10000;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 span {
+            display: inline-block;
+            font-size: 2em;
+            animation: wave 1.5s infinite;
+            animation-delay: calc(0.1s * var(--i));
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: translateY(0); color: #333; }
+            50% { transform: translateY(-10px); color: #fb4a05; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Tambahkan elemen dekoratif */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #ffcc00;
+            animation: fall 2s infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100vh); }
+            100% { transform: translateY(100vh); }
         }
     </style>
 
@@ -117,8 +168,17 @@
 <body>
 
     <section>
-        <h3>Happy Birthday!</h3>
-        <h1 id="name"><b>[Nama]</b></h1>
+        <!-- <h3>Happy Birthday!</h3> -->
+        <iframe src="https://giphy.com/embed/a1GrstyvjZSd1kwMcy" width="300" height="350" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+
+        <h1 id="name">
+            <span style="--i:1">[</span>
+            <span style="--i:2">N</span>
+            <span style="--i:3">a</span>
+            <span style="--i:4">m</span>
+            <span style="--i:5">a</span>
+            <span style="--i:6">]</span>
+        </h1>
         <canvas id="cakeCanvas"></canvas>
         <button type="button" id="blowButton">Klik</button>
         <p>(Klik tombol lalu tiup lilin untuk membuka surprisenya!)</p>
@@ -131,9 +191,14 @@
             Browser Anda tidak mendukung video tag.
         </video>
 
-        <iframe src="https://giphy.com/embed/a1GrstyvjZSd1kwMcy" width="384" height="480" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/stickers/happy-birthday-hbd-hb-a1GrstyvjZSd1kwMcy">via GIPHY</a></p>
+        <!-- Elemen dekoratif -->
+        <div class="confetti" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="confetti" style="left: 30%; animation-delay: 0.5s;"></div>
+        <div class="confetti" style="left: 50%; animation-delay: 1s;"></div>
+        <div class="confetti" style="left: 70%; animation-delay: 1.5s;"></div>
+        <div class="confetti" style="left: 90%; animation-delay: 2s;"></div>
 
-          <marquee>Made by someone who's not your average person</marquee>
+        <!-- <marquee>Made by someone who's not your average person</marquee> -->
         
     </section>
 
