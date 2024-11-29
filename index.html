@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Pian</title>
-
     <!-- Tambahkan favicon jika ada -->
     <link rel="icon" href="PN2.png">
 
@@ -15,22 +14,24 @@
     <!-- CSS -->
     <style>
         body {
-            background: linear-gradient(135deg, #f5f7fa, #c3cfe2); /* Gradien latar belakang */
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            /* Gradien latar belakang */
             font-family: 'Roboto', sans-serif;
             height: 100vh;
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden; /* Hilangkan scroll */
+            overflow: hidden;
+            /* Hilangkan scroll */
         }
 
         section {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 80%;
-            height: 80vh;
+            width: 95%;
+            height: 95vh;
             flex-flow: column;
             padding: 20px;
             box-sizing: border-box;
@@ -134,18 +135,82 @@
         h1 span {
             display: inline-block;
             font-size: 2em;
-            animation: wave 1.5s infinite;
+            animation: shake 1.5s infinite;
             animation-delay: calc(0.1s * var(--i));
         }
 
+
+        h3 {
+            color: #333;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h3 span {
+            display: inline-block;
+            font-size: 1rem;
+            animation: pulse 1.5s infinite;
+            animation-delay: calc(00.1s * var(--i));
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+                color: #fb4a05;
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shake {
+            0% {
+                transform: translateX(0);
+            }
+            10% {
+                transform: translateX(-5px);
+                color: #fb4a05;
+            }
+            20% {
+                transform: translateX(5px);
+                color: #05fbfb;
+            }
+            30% {
+                transform: translateX(-5px);
+                color: #09fb05;
+            }
+            /* tambahkan lebih banyak frame untuk membuat efek yang lebih kompleks */
+            }
+
         @keyframes wave {
-            0%, 100% { transform: translateY(0); color: #333; }
-            50% { transform: translateY(-10px); color: #fb4a05; }
+
+            0%,
+            100% {
+                transform: translateY(0);
+                color: #333;
+            }
+
+            50% {
+                transform: translateY(-10px);
+                color: #fb4a05;
+            }
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Tambahkan elemen dekoratif */
@@ -158,8 +223,13 @@
         }
 
         @keyframes fall {
-            0% { transform: translateY(-100vh); }
-            100% { transform: translateY(100vh); }
+            0% {
+                transform: translateY(-100vh);
+            }
+
+            100% {
+                transform: translateY(100vh);
+            }
         }
     </style>
 
@@ -168,38 +238,53 @@
 <body>
 
     <section>
-        <!-- <h3>Happy Birthday!</h3> -->
-        <iframe src="https://giphy.com/embed/a1GrstyvjZSd1kwMcy" width="300" height="350" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+        <h3 id="name2">
+            <span style="--i:1">H</span>
+            <span style="--i:2">a</span>
+            <span style="--i:3">p</span>
+            <span style="--i:4">p</span>
+            <span style="--i:5">y</span>
+            <span style="--i:6"> - </span>
+            <span style="--i:7">B</span>
+            <span style="--i:8">i</span>
+            <span style="--i:9">r</span>
+            <span style="--i:10">t</span>
+            <span style="--i:11">h</span>
+            <span style="--i:12">d</span>
+            <span style="--i:13">a</span>
+            <span style="--i:14">y</span>
+        </h3>
 
-        <h1 id="name">
-            <span style="--i:1">[</span>
-            <span style="--i:2">N</span>
-            <span style="--i:3">a</span>
-            <span style="--i:4">m</span>
-            <span style="--i:5">a</span>
-            <span style="--i:6">]</span>
-        </h1>
-        <canvas id="cakeCanvas"></canvas>
-        <button type="button" id="blowButton">Klik</button>
-        <p>(Klik tombol lalu tiup lilin untuk membuka surprisenya!😊😊😊)</p>
-        
-        <!-- Gambar congratulation.gif -->
-        <div id="congratsImage"></div>
-        <button type="button" id="giftButton">Buka Kado</button>
-        <video id="giftVideo" controls autoplay>
-            <source src="Birthday3.mp4" type="video/mp4">
-            Browser Anda tidak mendukung video tag.
-        </video>
+            <!-- <iframe src="https://giphy.com/embed/a1GrstyvjZSd1kwMcy" width="300" height="350" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe> -->
 
-        <!-- Elemen dekoratif -->
-        <div class="confetti" style="left: 10%; animation-delay: 0s;"></div>
-        <div class="confetti" style="left: 30%; animation-delay: 0.5s;"></div>
-        <div class="confetti" style="left: 50%; animation-delay: 1s;"></div>
-        <div class="confetti" style="left: 70%; animation-delay: 1.5s;"></div>
-        <div class="confetti" style="left: 90%; animation-delay: 2s;"></div>
+            <h1 id="name" class="margin-top: 1px;">
+                <span style="--i:1">V</span>
+                <span style="--i:2">a</span>
+                <span style="--i:3">n</span>
+                <span style="--i:4">d</span>
+                <span style="--i:5">a</span>
+            </h1>
+            <canvas id="cakeCanvas"></canvas>
+            <button type="button" id="blowButton">Klik</button>
+            <p>(Klik tombol lalu tiup lilin untuk membuka surprisenya!😊😊😊)</p>
 
-        <!-- <marquee>Made by someone who's not your average person</marquee> -->
-        
+            <!-- Gambar congratulation.gif -->
+            <div id="congratsImage"></div>
+            <button type="button" id="giftButton">Buka Kado</button>
+            <video id="giftVideo" controls autoplay>
+                <source src="Birthday3.mp4" type="video/mp4">
+                Browser Anda tidak mendukung video tag.
+            </video>
+
+            <!-- Elemen dekoratif / confetti -->
+            <div class="confetti" style="left: 10%; animation-delay: 0s;"></div>
+            <div class="confetti" style="left: 30%; animation-delay: 0.5s;"></div>
+            <div class="confetti" style="left: 50%; animation-delay: 1s;"></div>
+            <div class="confetti" style="left: 70%; animation-delay: 1.5s;"></div>
+            <div class="confetti" style="left: 90%; animation-delay: 2s;"></div>
+
+            <!-- <marquee>Made by someone who's not your average person</marquee> -->
+
     </section>
 
     <script>
